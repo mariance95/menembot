@@ -4,7 +4,7 @@ const cheerio = require("cheerio");
 const request = require("request");
 const menemQuotes = require("menemQuotes");
 const https = require("https");
-import {token} from "secrets.js");
+const config = require("./secrets.json");
 
 //
 const jokeURL = "https://v2.jokeapi.dev/joke/Any?lang=es";
@@ -112,4 +112,4 @@ function image(message) {
   });
 }
 
-bot.login(token);
+bot.login(config.token);
