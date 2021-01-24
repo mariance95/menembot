@@ -6,7 +6,7 @@ const menemQuotes = require("menemQuotes");
 
 var version = "1.3";
 
-const token = "NzY4MzIzNTUwNDU2MDUzNzgx.X4-zEQ.lY7J4ft-eybMAqt6C1FxPUhNqD8";
+const token = "NzY4MzIzNTUwNDU2MDUzNzgx.X4-zEQ.RLnLQNmoM27MwkQ7p69a56Ljfkc";
 const PREFIX = "!";
 
 bot.on("ready", () => {
