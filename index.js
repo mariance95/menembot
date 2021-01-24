@@ -6,14 +6,14 @@ const menemQuotes = require("menemQuotes");
 const https = require("https");
 const config = require("./secrets.json");
 
-//
-const jokeURL = "https://v2.jokeapi.dev/joke/Any?lang=es";
-function jokeAPI() {
-  https.get(jokeURL);
-}
+// JOKER?
+// const jokeURL = "https://v2.jokeapi.dev/joke/Any?lang=es";
+// function jokeAPI() {
+//   https.get(jokeURL.joke);
+// }
+
 // DISCORD API NO TOCAR
 var version = "1.3";
-
 const PREFIX = "!";
 
 // BOT ON
@@ -21,6 +21,7 @@ bot.on("ready", () => {
   console.log("Bot online");
   console.log("Menem Quotes esta funcionando normalmente");
 });
+bot.login(config.token);
 
 // !menem
 bot.on("message", (message) => {
@@ -48,25 +49,19 @@ bot.on("message", (message) => {
   }
 });
 
-// !chiste
-bot.on("message", (message) => {
-  let args = message.content.substring(PREFIX.length).split(" ");
+// !chiste not working
+// bot.on("message", (message) => {
+//   let args = message.content.substring(PREFIX.length).split(" ");
+//
+//   switch (args[0]) {
+//     case "chiste":
+//       message.reply(jokeAPI());
+//       console.log("Se pidio un Chiste");
+//       break;
+//   }
+// });
 
-  switch (args[0]) {
-    case "chiste":
-      message.reply(jokeAPI());
-      console.log("Se pidio un Chiste");
-      break;
-  }
-});
-
-bot.on("message", (msg) => {
-  if (msg.content === "Gracias carlitos") {
-    msg.reply("De nada, wachin!");
-  }
-});
-
-// FRASES MENEM
+// !frase
 bot.on("message", (message) => {
   let args = message.content.substring(PREFIX.length).split(" ");
 
@@ -78,6 +73,14 @@ bot.on("message", (message) => {
   }
 });
 
+// GRACIAS CARLITOS
+bot.on("message", (msg) => {
+  if (msg.content === "Gracias carlitos") {
+    msg.reply("De nada, wachin!");
+  }
+});
+
+// Get Image
 function image(message) {
   var options = {
     url: "http://results.dogpile.com/serp?qc=images&q=" + "menem",
@@ -111,5 +114,3 @@ function image(message) {
     message.channel.send(urls[Math.floor(Math.random() * urls.length)]);
   });
 }
-
-bot.login(config.token);
