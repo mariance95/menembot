@@ -3,35 +3,59 @@ const bot = new Discord.Client();
 const cheerio = require("cheerio");
 const request = require("request");
 const menemQuotes = require("menemQuotes");
+const https = require("https");
+import {token} from "secrets.js");
 
+//
+const jokeURL = "https://v2.jokeapi.dev/joke/Any?lang=es";
+function jokeAPI() {
+  https.get(jokeURL);
+}
+// DISCORD API NO TOCAR
 var version = "1.3";
 
-const token = "NzY4MzIzNTUwNDU2MDUzNzgx.X4-zEQ.RLnLQNmoM27MwkQ7p69a56Ljfkc";
 const PREFIX = "!";
 
+// BOT ON
 bot.on("ready", () => {
   console.log("Bot online");
   console.log("Menem Quotes esta funcionando normalmente");
 });
 
+// !menem
 bot.on("message", (message) => {
   let args = message.content.substring(PREFIX.length).split(" ");
 
   switch (args[0]) {
     case "menem":
       image(message);
+      console.log("Se pidio una imagen");
 
       break;
   }
 });
 
+// !dolar
 bot.on("message", (message) => {
   let args = message.content.substring(PREFIX.length).split(" ");
 
   switch (args[0]) {
     case "dolar":
       message.reply("El dolar sigue estando en 1$ muchachos, viva menem!");
+      console.log("Se pidio precio del Dolar");
 
+      break;
+  }
+});
+
+// !chiste
+bot.on("message", (message) => {
+  let args = message.content.substring(PREFIX.length).split(" ");
+
+  switch (args[0]) {
+    case "chiste":
+      message.reply(jokeAPI());
+      console.log("Se pidio un Chiste");
       break;
   }
 });
@@ -42,12 +66,13 @@ bot.on("message", (msg) => {
   }
 });
 
+// FRASES MENEM
 bot.on("message", (message) => {
   let args = message.content.substring(PREFIX.length).split(" ");
 
   switch (args[0]) {
     case "frase":
-      message.reply(menemQuotes.random());
+      message.reply("Yo una vez dije: " + menemQuotes.random());
 
       break;
   }
